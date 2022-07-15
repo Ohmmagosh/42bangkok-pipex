@@ -6,7 +6,7 @@
 /*   By: psuanpro <Marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 20:58:08 by psuanpro          #+#    #+#             */
-/*   Updated: 2022/07/14 13:35:59 by psuanpro         ###   ########.fr       */
+/*   Updated: 2022/07/16 00:30:56 by psuanpro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,15 @@ int	main(int argc, char **argv, char **envp)
 	pathj = (char **)malloc(sizeof(char *));
 
 	path = ft_split(envp[chk_path(envp)]+5,':');
-	while (path[i]){
-		printf("path = |%s|\n", path[i]);
-		i++;
-	}
+	// while (path[i]){
+	// 	printf("path = |%s|\n", path[i]);
+	// 	i++;
+	// }
 	i = 0;
 	while (path[i])
 	{
 		pathj[i] = ft_strjoin(path[i], "/ls");
+		printf("%s\n", pathj[i]);
 		i++;
 	}
 	while (*pathj)
@@ -60,3 +61,19 @@ int	main(int argc, char **argv, char **envp)
 }
 
 // > ./pipex file1 cmd1 cmd2 cmd3 ... cmdn file2
+// int	fd;
+// int	id;
+// fd = open(argv[1], O_RDONLY);
+// pipe(fd[2])สร้าง fd ใหม่
+// id = fork();
+// if (id == 0)
+// {
+//		close(fd[0]);
+//		execve();
+// }
+// if (id > 0)
+// {
+//		wait(0);
+//		close(fd[1])
+//		return (fd)
+// }
