@@ -6,7 +6,7 @@
 /*   By: psuanpro <Marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 20:58:38 by psuanpro          #+#    #+#             */
-/*   Updated: 2022/07/21 03:47:13 by psuanpro         ###   ########.fr       */
+/*   Updated: 2022/08/01 21:27:14 by psuanpro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,28 @@
 # include <fcntl.h>
 
 
+typedef struct s_var {
+	int	infd;
+	int	outfd;
+	int	argc;
+	int	i;
+	char	**argv;
+	char	*path;
+	char	**option;
+	char	**path_f;
+	char	**cmd_i;
+	char	**path_j;
+} t_var;
+
+void	fi_init_pipex(t_var *p);
 size_t	ft_strlen(const char *s);
 char	**ft_split(char const *s, char c);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 char	*ft_strjoin(char const *s1, char const *s2);
 int	ft_strncmp(const char *s1, const char *s2, size_t n);
 //test function
-void	ft_set_path(char **cmd, char **envp);
-char	*ft_join_path(char const *s1, char const *s2);
+char	**ft_set_path(char **cmd, char **envp, t_var *p);
+char	*ft_join_path(char *s1, char *s2);
+char	*ft_chk_path(char **path);
+size_t	ft_str_count(char **path);
 #endif
