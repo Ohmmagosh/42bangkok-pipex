@@ -6,7 +6,7 @@
 /*   By: psuanpro <Marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 20:58:08 by psuanpro          #+#    #+#             */
-/*   Updated: 2022/08/01 21:26:41 by psuanpro         ###   ########.fr       */
+/*   Updated: 2022/08/02 14:31:08 by psuanpro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,11 @@ int	main(int argc, char **argv, char **envp)
 	fi_init_pipex(&p);
 	p.i = 2;
 	p.infd = open(argv[1], O_RDONLY);
+	if (p.infd < 0)
+	{
+		perror("file not found");
+		exit(2);
+	}
 	dup2(p.infd, 0);	
 	while (p.i <= argc - 2)
 	{
@@ -141,6 +146,5 @@ int	main(int argc, char **argv, char **envp)
 
 
 
-	// outfd = open(argv[argc - 1], O_RDONLY);
 	return (0);
 }
