@@ -6,7 +6,7 @@
 #    By: psuanpro <Marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/04 21:05:48 by psuanpro          #+#    #+#              #
-#    Updated: 2022/07/14 11:26:25 by psuanpro         ###   ########.fr        #
+#    Updated: 2022/08/02 22:16:21 by psuanpro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,11 +18,40 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
 all:
-	$(CC) $(CFLAGS) $(SRC) -o $(NAME)
+	@$(CC) $(CFLAGS) $(SRC) -o $(NAME)
 clean:
 	rm -rf $(OBJS)
 fclean: clean
-	rm-rf $(NAME)
+	rm -rf $(NAME)
+	rm -rf heredoc outfile
+
+
 re: fclean all
 
-.PHONY: all clean fclean re
+test1:re
+	@./pipex infile "grep qw" "wc -w" outfile
+	@echo "------ft_pipex------"
+	cato
+	@echo "------system------"
+	@cat infile | grep qw | wc -w
+
+tester1:re
+	@echo "------wrong file------"
+	@./pipex infileewew "grep qw" "wc -w" outfile
+	@cato
+
+tester2:re
+	@echo "------wrong input------"
+	@./pipex infile "grep qw" outfile
+
+tester3:re
+	@echo "------wrong command------"
+	@./pipex infile "grep qw" "wc -/l" outfile
+
+
+hdoc:all
+	./pipex here_doc EOF "cat" "wc -l" outfile
+	cat outfile
+
+
+.PHONY: all clean fclean re test1 tester1 tester2 tester3 cat1 hdoc

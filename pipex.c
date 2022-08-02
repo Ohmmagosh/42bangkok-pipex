@@ -6,23 +6,54 @@
 /*   By: psuanpro <Marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 20:58:08 by psuanpro          #+#    #+#             */
-/*   Updated: 2022/08/02 14:31:08 by psuanpro         ###   ########.fr       */
+/*   Updated: 2022/08/03 01:23:59 by psuanpro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
+int	ft_heredoc_pipex(&argv[1])
+{
+	p.herefd = open("here_doc", O_CREAT | O_RDWR| O_APPEND, 777);
+	while (1)
+	{
+		p.line = get_next_line(0);
+		if(ft_strncmp(argv[2], p.line, ft_strlen(argv[2])) == 0)
+			break;
+		write(p.herefd, p.line, ft_strlen(p.line));
+	}
+	dup2(p.herefd , 0);
+	return (3);
+}
+
+int	ft_chk_input(int anum, int numfd)
+{
+	if (numfd < 0)
+	{
+		perror("file not found");
+		exit(2);
+	}
+	else if (anum < 5)
+	{
+		write(1, "argument error", 14);
+		return(0);
+	}
+	return(0);
+}
+
 void	fi_init_pipex(t_var *p)
 {
 	p->infd = 0;
 	p->outfd = 0;
-	p->i = 0;
+	p->herefd = 0;
+	p->i = 2;
 	p->argv = NULL;
 	p->path = NULL;
 	p->option = NULL;
 	p->path_f = NULL;
 	p->cmd_i = NULL;
 	p->path_j = NULL;
+	
 }
 
 void	ft_pipex(t_var *p, char **envp, int argc, char **argv)
@@ -127,13 +158,13 @@ int	main(int argc, char **argv, char **envp)
 	t_var	p;
 
 	fi_init_pipex(&p);
-	p.i = 2;
+	if (ft_strncmp("here_doc", argv[1], 7) == 0)
+		p.i = ft_heredoc_pipex(&argv[1]); 
+	//./pipex here_doc : "grep qw" "wc -w" outfile
+
+	
 	p.infd = open(argv[1], O_RDONLY);
-	if (p.infd < 0)
-	{
-		perror("file not found");
-		exit(2);
-	}
+	// ft_chk_input(argc, p.infd);
 	dup2(p.infd, 0);	
 	while (p.i <= argc - 2)
 	{

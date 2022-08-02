@@ -6,7 +6,7 @@
 /*   By: psuanpro <Marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 20:58:38 by psuanpro          #+#    #+#             */
-/*   Updated: 2022/08/01 21:27:14 by psuanpro         ###   ########.fr       */
+/*   Updated: 2022/08/02 21:58:26 by psuanpro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdio.h>
 # include <sys/wait.h>
 # include <fcntl.h>
+# include "get_next_line.h"
 
 
 typedef struct s_var {
@@ -25,12 +26,14 @@ typedef struct s_var {
 	int	outfd;
 	int	argc;
 	int	i;
+	int herefd;
 	char	**argv;
 	char	*path;
 	char	**option;
 	char	**path_f;
 	char	**cmd_i;
 	char	**path_j;
+	char	*line;
 } t_var;
 
 void	fi_init_pipex(t_var *p);
@@ -44,4 +47,5 @@ char	**ft_set_path(char **cmd, char **envp, t_var *p);
 char	*ft_join_path(char *s1, char *s2);
 char	*ft_chk_path(char **path);
 size_t	ft_str_count(char **path);
+int	ft_chk_input(int anum, int numfd);
 #endif
