@@ -6,23 +6,28 @@
 /*   By: psuanpro <Marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 20:58:08 by psuanpro          #+#    #+#             */
-/*   Updated: 2022/08/03 01:23:59 by psuanpro         ###   ########.fr       */
+/*   Updated: 2022/08/03 14:17:16 by psuanpro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	ft_heredoc_pipex(&argv[1])
+int	ft_heredoc_pipex(char *argv, int argc, t_var *p)
 {
-	p.herefd = open("here_doc", O_CREAT | O_RDWR| O_APPEND, 777);
+	if(argc < 6)
+	{
+		write(1, "argument error", 14);
+		return(0);
+	}
+	p->herefd = open("here_doc", O_CREAT | O_RDWR| O_APPEND, 777);
 	while (1)
 	{
-		p.line = get_next_line(0);
-		if(ft_strncmp(argv[2], p.line, ft_strlen(argv[2])) == 0)
+		p->line = get_next_line(0);
+		if(ft_strncmp(&argv[2], p->line, ft_strlen(&argv[2])) == 0)
 			break;
-		write(p.herefd, p.line, ft_strlen(p.line));
+		write(p->herefd, p->line, ft_strlen(p->line));
 	}
-	dup2(p.herefd , 0);
+	dup2(p->herefd , 0);
 	return (3);
 }
 
@@ -64,7 +69,7 @@ void	ft_pipex(t_var *p, char **envp, int argc, char **argv)
 
 	pipe(pipe_fd);
 	pid = fork();
-	if (pid == 0) //child
+	if (pid == 0)
 	{
 		close(pipe_fd[0]);
 		if(p->i == argc - 2)
@@ -159,12 +164,9 @@ int	main(int argc, char **argv, char **envp)
 
 	fi_init_pipex(&p);
 	if (ft_strncmp("here_doc", argv[1], 7) == 0)
-		p.i = ft_heredoc_pipex(&argv[1]); 
-	//./pipex here_doc : "grep qw" "wc -w" outfile
-
-	
+		p.i = ft_heredoc_pipex(*argv, argc, &p); 	
 	p.infd = open(argv[1], O_RDONLY);
-	// ft_chk_input(argc, p.infd);
+	ft_chk_input(argc, p.infd);
 	dup2(p.infd, 0);	
 	while (p.i <= argc - 2)
 	{
@@ -173,9 +175,5 @@ int	main(int argc, char **argv, char **envp)
 		ft_pipex(&p, envp, argc, argv);
 		p.i++;
 	}
-
-
-
-
 	return (0);
 }

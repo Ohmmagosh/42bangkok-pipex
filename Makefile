@@ -6,7 +6,7 @@
 #    By: psuanpro <Marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/04 21:05:48 by psuanpro          #+#    #+#              #
-#    Updated: 2022/08/02 22:16:21 by psuanpro         ###   ########.fr        #
+#    Updated: 2022/08/03 13:59:01 by psuanpro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ re: fclean all
 test1:re
 	@./pipex infile "grep qw" "wc -w" outfile
 	@echo "------ft_pipex------"
-	cato
+	@cat outfile
 	@echo "------system------"
 	@cat infile | grep qw | wc -w
 
@@ -49,9 +49,11 @@ tester3:re
 	@./pipex infile "grep qw" "wc -/l" outfile
 
 
-hdoc:all
+hdoc:re
 	./pipex here_doc EOF "cat" "wc -l" outfile
 	cat outfile
 
+chkl:re
+	valgrind ./pipex infile "grep qw" "wc -w" outfile
 
 .PHONY: all clean fclean re test1 tester1 tester2 tester3 cat1 hdoc

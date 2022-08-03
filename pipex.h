@@ -6,7 +6,7 @@
 /*   By: psuanpro <Marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 20:58:38 by psuanpro          #+#    #+#             */
-/*   Updated: 2022/08/02 21:58:26 by psuanpro         ###   ########.fr       */
+/*   Updated: 2022/08/03 13:55:47 by psuanpro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,5 @@ char	*ft_join_path(char *s1, char *s2);
 char	*ft_chk_path(char **path);
 size_t	ft_str_count(char **path);
 int	ft_chk_input(int anum, int numfd);
+int	ft_heredoc_pipex(char *argv, int argc, t_var *p);
 #endif
