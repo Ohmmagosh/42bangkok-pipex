@@ -6,13 +6,13 @@
 /*   By: psuanpro <Marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 20:58:08 by psuanpro          #+#    #+#             */
-/*   Updated: 2022/08/03 14:17:16 by psuanpro         ###   ########.fr       */
+/*   Updated: 2022/08/03 14:45:12 by psuanpro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	ft_heredoc_pipex(char *argv, int argc, t_var *p)
+int	ft_heredoc_pipex(char **argv, int argc, t_var *p)
 {
 	if(argc < 6)
 	{
@@ -23,7 +23,7 @@ int	ft_heredoc_pipex(char *argv, int argc, t_var *p)
 	while (1)
 	{
 		p->line = get_next_line(0);
-		if(ft_strncmp(&argv[2], p->line, ft_strlen(&argv[2])) == 0)
+		if(ft_strncmp(argv[2], p->line, ft_strlen(argv[2])) == 0)
 			break;
 		write(p->herefd, p->line, ft_strlen(p->line));
 	}
@@ -46,7 +46,7 @@ int	ft_chk_input(int anum, int numfd)
 	return(0);
 }
 
-void	fi_init_pipex(t_var *p)
+void	ft_init_pipex(t_var *p)
 {
 	p->infd = 0;
 	p->outfd = 0;
@@ -162,9 +162,9 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_var	p;
 
-	fi_init_pipex(&p);
+	ft_init_pipex(&p);
 	if (ft_strncmp("here_doc", argv[1], 7) == 0)
-		p.i = ft_heredoc_pipex(*argv, argc, &p); 	
+		p.i = ft_heredoc_pipex(argv, argc, &p); 	
 	p.infd = open(argv[1], O_RDONLY);
 	ft_chk_input(argc, p.infd);
 	dup2(p.infd, 0);	

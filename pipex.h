@@ -6,7 +6,7 @@
 /*   By: psuanpro <Marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 20:58:38 by psuanpro          #+#    #+#             */
-/*   Updated: 2022/08/03 13:55:47 by psuanpro         ###   ########.fr       */
+/*   Updated: 2022/08/03 14:46:47 by psuanpro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_var {
 	char	*line;
 } t_var;
 
-void	fi_init_pipex(t_var *p);
+void	ft_init_pipex(t_var *p);
 size_t	ft_strlen(const char *s);
 char	**ft_split(char const *s, char c);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
@@ -48,5 +48,5 @@ char	*ft_join_path(char *s1, char *s2);
 char	*ft_chk_path(char **path);
 size_t	ft_str_count(char **path);
 int	ft_chk_input(int anum, int numfd);
-int	ft_heredoc_pipex(char *argv, int argc, t_var *p);
+int	ft_heredoc_pipex(char **argv, int argc, t_var *p);
 #endif

@@ -6,7 +6,7 @@
 #    By: psuanpro <Marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/04 21:05:48 by psuanpro          #+#    #+#              #
-#    Updated: 2022/08/03 13:59:01 by psuanpro         ###   ########.fr        #
+#    Updated: 2022/08/03 15:01:49 by psuanpro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ CFLAGS = -Wall -Wextra -Werror
 
 all:
 	@$(CC) $(CFLAGS) $(SRC) -o $(NAME)
+
 clean:
 	rm -rf $(OBJS)
 fclean: clean
@@ -54,6 +55,6 @@ hdoc:re
 	cat outfile
 
 chkl:re
-	valgrind ./pipex infile "grep qw" "wc -w" outfile
+	valgrind --leak-check=full ./pipex infile "grep qw" "wc -w" outfile 
 
 .PHONY: all clean fclean re test1 tester1 tester2 tester3 cat1 hdoc
