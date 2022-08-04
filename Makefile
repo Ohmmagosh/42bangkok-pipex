@@ -6,7 +6,7 @@
 #    By: psuanpro <Marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/04 21:05:48 by psuanpro          #+#    #+#              #
-#    Updated: 2022/08/03 15:01:49 by psuanpro         ###   ########.fr        #
+#    Updated: 2022/08/05 00:52:12 by psuanpro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ clean:
 	rm -rf $(OBJS)
 fclean: clean
 	rm -rf $(NAME)
-	rm -rf heredoc outfile
+	rm -rf here_doc outfile
 
 
 re: fclean all
@@ -47,7 +47,7 @@ tester2:re
 
 tester3:re
 	@echo "------wrong command------"
-	@./pipex infile "grep qw" "wc -/l" outfile
+	valgrind ./pipex infile "grep qw" "wc -/l" outfile
 
 
 hdoc:re
@@ -55,6 +55,10 @@ hdoc:re
 	cat outfile
 
 chkl:re
-	valgrind --leak-check=full ./pipex infile "grep qw" "wc -w" outfile 
+	 valgrind --leak-check=full  --track-origins=yes --error-limit=no ./pipex infile "grep qw" "wc -w" outfile
+
+ll: fclean
+	gcc -g *.c
+	lldb ./pipex infile "grep qw" "wc -w" outfile
 
 .PHONY: all clean fclean re test1 tester1 tester2 tester3 cat1 hdoc

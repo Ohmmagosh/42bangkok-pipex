@@ -73,20 +73,19 @@ char	**ft_split(char const *s, char c)
 	int		i;
 	int		sl;
 
-	i = 0;
+	i = -1;
 	if (!s)
 		return (NULL);
 	sl = ft_countword(s, c);
 	array = (char **)malloc(ft_countword(s, c) * (sizeof(char *)));
 	if (!array)
 		return (NULL);
-	while (i < sl - 1)
+	while (++i < sl - 1)
 	{
 		while (*s == c)
 			s++;
 		array[i] = ft_getword(s, c);
 		s += ft_countcword(s, c);
-		i++;
 	}
 	array[i] = NULL;
 	return (array);
