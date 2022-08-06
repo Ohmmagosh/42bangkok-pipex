@@ -6,11 +6,12 @@
 /*   By: psuanpro <Marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 20:58:08 by psuanpro          #+#    #+#             */
-/*   Updated: 2022/08/05 00:54:23 by psuanpro         ###   ########.fr       */
+/*   Updated: 2022/08/06 16:00:50 by psuanpro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
 char **cmd;
 
 int	ft_heredoc_pipex(char **argv, int argc, t_var *p)
@@ -57,7 +58,6 @@ void	ft_init_pipex(t_var *p)
 	p->argv = NULL;
 	p->path = NULL;
 	p->path_f = NULL;
-	p->path_j = NULL;	
 }
 
 void	ft_pipex(t_var *p, char **envp, int argc, char **argv)

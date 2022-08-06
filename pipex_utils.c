@@ -6,7 +6,7 @@
 /*   By: psuanpro <Marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 14:07:20 by psuanpro          #+#    #+#             */
-/*   Updated: 2022/08/04 23:42:45 by psuanpro         ###   ########.fr       */
+/*   Updated: 2022/08/06 14:53:34 by psuanpro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,18 +108,3 @@ char	**ft_split_join(char const *s, char c, char *cmd)
 	return (array);
 }
 
-// int	main(int argc, char **argv, char **envp)
-// {
-// 	(void)argc;
-// 	(void)argv;
-
-// 	char **ret;
-// 	int i= -1;
-// 	// while (envp[++i])
-// 	// 	printf("%s\n", envp[3);
-
-// 	ret = ft_split_join(envp[3]+ 5, ':',  "ls");
-
-// 	while (ret[++i])
-// 		printf("%s\n", ret[i]);
-// }
