@@ -6,7 +6,7 @@
 #    By: psuanpro <Marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/04 21:05:48 by psuanpro          #+#    #+#              #
-#    Updated: 2022/08/05 00:52:12 by psuanpro         ###   ########.fr        #
+#    Updated: 2022/08/06 16:10:09 by psuanpro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,39 +26,6 @@ fclean: clean
 	rm -rf $(NAME)
 	rm -rf here_doc outfile
 
-
 re: fclean all
 
-test1:re
-	@./pipex infile "grep qw" "wc -w" outfile
-	@echo "------ft_pipex------"
-	@cat outfile
-	@echo "------system------"
-	@cat infile | grep qw | wc -w
-
-tester1:re
-	@echo "------wrong file------"
-	@./pipex infileewew "grep qw" "wc -w" outfile
-	@cato
-
-tester2:re
-	@echo "------wrong input------"
-	@./pipex infile "grep qw" outfile
-
-tester3:re
-	@echo "------wrong command------"
-	valgrind ./pipex infile "grep qw" "wc -/l" outfile
-
-
-hdoc:re
-	./pipex here_doc EOF "cat" "wc -l" outfile
-	cat outfile
-
-chkl:re
-	 valgrind --leak-check=full  --track-origins=yes --error-limit=no ./pipex infile "grep qw" "wc -w" outfile
-
-ll: fclean
-	gcc -g *.c
-	lldb ./pipex infile "grep qw" "wc -w" outfile
-
-.PHONY: all clean fclean re test1 tester1 tester2 tester3 cat1 hdoc
+.PHONY: all clean fclean re 
