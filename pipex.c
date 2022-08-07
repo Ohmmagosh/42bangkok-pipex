@@ -6,13 +6,11 @@
 /*   By: psuanpro <Marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 20:58:08 by psuanpro          #+#    #+#             */
-/*   Updated: 2022/08/06 17:48:06 by psuanpro         ###   ########.fr       */
+/*   Updated: 2022/08/07 23:27:20 by psuanpro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-
 
 int	ft_chk_path(char **path_a, t_var *p)
 {
@@ -40,11 +38,10 @@ size_t	ft_str_count(char **path_c)
 	return (i);
 }
 
-//                         grep qw
+
 char	*ft_set_path(char **cmd_p, char **envp, t_var *p)
 {
 	int	i;
-	// cmd = { "grep","qw", NULL}
 	cmd = ft_split(*cmd_p, ' ');
 	i = -1;
 	while (ft_strncmp("PATH", envp[++i], 4) != 0)
@@ -52,6 +49,7 @@ char	*ft_set_path(char **cmd_p, char **envp, t_var *p)
 	p->path_f = ft_split_join(envp[i] + 5, ':', cmd[0]);
 	return (p->path_f[ft_chk_path(p->path_f, p)]);
 }
+
 void	ft_free_pipex(t_var *p)
 {
 	int	i;
