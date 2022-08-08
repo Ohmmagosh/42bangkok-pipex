@@ -6,7 +6,7 @@
 /*   By: psuanpro <Marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:39:39 by psuanpro          #+#    #+#             */
-/*   Updated: 2022/08/02 18:20:27 by psuanpro         ###   ########.fr       */
+/*   Updated: 2022/08/08 16:51:12 by psuanpro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <limits.h>
-#ifndef BUFFER_SIZE
-#	define BUFFER_SIZE 1
-#endif
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1
+# endif
 
 int		ft_len_nl(char *s);
 int		ft_strlen_gnl(char *s);

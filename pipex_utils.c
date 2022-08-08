@@ -6,13 +6,14 @@
 /*   By: psuanpro <Marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 14:07:20 by psuanpro          #+#    #+#             */
-/*   Updated: 2022/08/06 17:46:56 by psuanpro         ###   ########.fr       */
+/*   Updated: 2022/08/08 16:29:55 by psuanpro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-static size_t	ft_strlcpy_split(char *dst, char const *src, size_t dstsize, char *cmd)
+static size_t	ft_strlcpy_split(char *dst, \
+	char const *src, size_t dstsize, char *cmd)
 {
 	size_t	i;
 	size_t	j;
@@ -75,6 +76,7 @@ static	size_t	ft_countcword(char const *s, char c)
 static	char	*ft_getword(char const *s, char c, char *cmd)
 {
 	char	*str;
+
 	str = malloc(sizeof(char) * ft_countcword(s, c) + 3 + ft_strlen(cmd));
 	while (*s == c)
 	{
@@ -107,4 +109,3 @@ char	**ft_split_join(char const *s, char c, char *cmd)
 	array[i] = NULL;
 	return (array);
 }
-
