@@ -6,7 +6,7 @@
 /*   By: psuanpro <Marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 17:42:55 by psuanpro          #+#    #+#             */
-/*   Updated: 2022/08/08 16:45:59 by psuanpro         ###   ########.fr       */
+/*   Updated: 2022/08/10 16:56:58 by psuanpro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ int	ft_heredoc_pipex(char **argv, int argc, t_var *p)
 		write(1, "pipe heredoc>", 13);
 		p->line = get_next_line(0);
 		if (ft_strncmp(argv[2], p->line, ft_strlen(argv[2])) == 0)
+		{
+			free(p->line);
 			break ;
+		}
 		write(p->herefd, p->line, ft_strlen(p->line));
 		free(p->line);
 	}
